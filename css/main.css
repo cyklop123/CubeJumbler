@@ -1,0 +1,19 @@
+body
+{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#pattern
+{
+    border:1px solid black;
+    width:50vw;
+}
+
+input[type='text']
+{
+    width:39vw;
+}
+button[type='submit']
+{
+    width:10vw;
+}
