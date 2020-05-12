@@ -1,19 +1,25 @@
 body
 {
     font-family: 'Ubuntu', sans-serif;
+    background: linear-gradient(180deg, #ddd, #fff) repeat-x;
+}
+
+#container
+{
+    width:960px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    min-height: 100vh;
 }
 
 #pattern
 {
     border:1px solid black;
-    width:50vw;
+    width:600px;
 }
 
-input[type='text']
+#scramble
 {
-    width:39vw;
-}
-button[type='submit']
-{
-    width:10vw;
+    width: 400px;
 }

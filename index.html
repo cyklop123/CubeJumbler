@@ -14,10 +14,13 @@
     <title>Cube Jumbler</title>
 </head>
 <body>
+    <div id="container">
     <form id="scrambleForm">
-        <input type="text" id="scramble">
-        <button type="submit">Scrabmle!</button>
+        <input type="text" id="scramble" autocomplete="off" title="Type your scramble here">
+        <button type="submit" title="Click here to apply your scramble">Scrabmle!</button>
+        <button type="button" id="reset" title="Click here to reset cube to default state">Reset</button>
     </form>
     <canvas id="pattern" width="780" height="600"></canvas>
+    </div>
 </body>
 </html>

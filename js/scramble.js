@@ -1,15 +1,69 @@
 
 function processScramble(scramble) {
-    let moves = scramble.split(' ');
-    for(let i=moves.length-1; i>=0; --i)
+    scramble = scramble.replace(/ /g,'');
+    let moves = "";
+    for(let i=0; i<scramble.length; ++i)
     {
-        if(moves[i].length == 2 )
+        if(scramble[i] == '2')
         {
-            if(moves[i][1] != "'") {
-                moves[i] = moves[i].substr(0, 1);
-                moves.splice(i, 0, moves[i]);
-            }
+            moves += scramble[i-1];
+        }
+        else
+        {
+            moves += scramble[i];
         }
     }
     return moves;
+}
+
+function applyScramble(cube, scramble) {
+    let moves = processScramble(scramble);
+
+    for (let i = 0; i < moves.length; i++) {
+        let prime = false;
+        if (i < moves.length && moves[i+1] == "'") {
+            prime = true;
+        }
+        switch (moves[i]) {
+            case 'R':
+                cube.moveR(prime);
+                break;
+            case 'L':
+                cube.moveL(prime);
+                break;
+            case 'U':
+                cube.moveU(prime);
+                break;
+            case 'D':
+                cube.moveD(prime);
+                break;
+            case 'F':
+                cube.moveF(prime);
+                break;
+            case 'B':
+                cube.moveB(prime);
+                break;
+            case 'r':
+                cube.mover(prime);
+                break;
+            case 'l':
+                cube.movel(prime);
+                break;
+            case 'u':
+                cube.moveu(prime);
+                break;
+            case 'd':
+                cube.moved(prime);
+                break;
+            case 'f':
+                cube.movef(prime);
+                break;
+            case 'b':
+                cube.moveb(prime);
+                break;
+            default:
+                console.error('Unknown move',moves[i][0], prime);
+        }
+        if(prime) i++; //skip prime value
+    }
 }
