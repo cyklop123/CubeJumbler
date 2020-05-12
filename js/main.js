@@ -2,55 +2,40 @@ $(document).ready(function () {
     let canvas = $("#pattern")[0];
     let ctx = canvas.getContext("2d");
 
-    let cube = [
-    [['w','w','w'],['w','w','w'],['w','w','w']],
-    [['o','o','o'],['o','o','o'],['o','o','o']],
-    [['g','g','g'],['g','g','g'],['g','g','g']],
-    [['r','r','r'],['r','r','r'],['r','r','r']],
-    [['b','b','b'],['b','b','b'],['b','b','b']],
-    [['y','y','y'],['y','y','y'],['y','y','y']]
-    ];
-    drawCube(cube, ctx);
+    var cube = new Cube([['w','w','w'],['w','w','w'],['w','w','w']]);
 
-    $("#scrambleForm").on('submit',function(event) {
-        event.preventDefault();
-        cube = [
-            [['w','w','w'],['w','w','w'],['w','w','w']],
-            [['o','o','o'],['o','o','o'],['o','o','o']],
-            [['g','g','g'],['g','g','g'],['g','g','g']],
-            [['r','r','r'],['r','r','r'],['r','r','r']],
-            [['b','b','b'],['b','b','b'],['b','b','b']],
-            [['y','y','y'],['y','y','y'],['y','y','y']]
-        ];
 
-        let moves = processScramble($("#scramble").val());
 
-        for (let i = 0; i < moves.length; i++) {
-            let prime = false;
-            if (moves[i].length > 1)
-                prime = true;
-            switch (moves[i][0]) {
-                case 'R':
-                    moveR(cube, prime);
-                    break;
-                case 'L':
-                    moveL(cube, prime);
-                    break;
-                case 'U':
-                    moveU(cube, prime);
-                    break;
-                case 'D':
-                    moveD(cube, prime);
-                    break;
-                case 'F':
-                    moveF(cube, prime);
-                    break;
-                case 'B':
-                    moveB(cube, prime);
-                    break;
-            }
+    let moves = processScramble("R2 D2 U L2 R2 F2 D L2 U L2 U R2 B U' L D' L' R2 F2 L2");
+    console.log(moves);
+
+    for (let i = 0; i < moves.length; i++) {
+        let prime = false;
+        if (moves[i].length > 1)
+            prime = true;
+        switch (moves[i][0]) {
+            case 'R':
+                cube.moveR(prime);
+                break;
+            case 'L':
+                cube.moveL(prime);
+                break;
+            case 'U':
+                cube.moveU(prime);
+                break;
+            case 'D':
+                cube.moveD(prime);
+                break;
+            case 'F':
+                cube.moveF(prime);
+                break;
+            case 'B':
+                cube.moveB(prime);
+                break;
+            default:
+                console.error('Unknown move',moves[i][0], prime);
         }
+    }
 
-        drawCube(cube, ctx);
-    });
+    drawCube(cube, ctx);
 });

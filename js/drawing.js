@@ -1,17 +1,11 @@
 
 function drawCube(cube, ctx) {
-    //U
-    drawFace(cube[0], 210, 30, ctx);
-    //L
-    drawFace(cube[1], 30, 210, ctx);
-    //F
-    drawFace(cube[2], 210, 210, ctx);
-    //R
-    drawFace(cube[3], 390, 210, ctx);
-    //B
-    drawFace(cube[4], 570, 210, ctx);
-    //D
-    drawFace(cube[5], 210, 390, ctx);
+    drawFace(cube.U, 210, 30, ctx);
+    drawFace(cube.L, 30, 210, ctx);
+    drawFace(cube.F, 210, 210, ctx);
+    drawFace(cube.R, 390, 210, ctx);
+    drawFace(cube.B, 570, 210, ctx);
+    drawFace(cube.D, 210, 390, ctx);
 }
 
 function drawFace(face, x, y, ctx) {
